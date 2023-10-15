@@ -89,7 +89,7 @@ function CheckinBooking() {
             }}
             id="breakfast"
           >
-            Want to add breakfast for $ {optionalBreakfastPrice}? ($
+            Want to add breakfast for {formatCurrency(optionalBreakfastPrice)}? ($
             {settings?.breakfastPrice}/day per guest)
           </Checkbox>
         </Box>

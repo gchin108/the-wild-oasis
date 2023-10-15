@@ -18,22 +18,22 @@ import Checkin from "./pages/Checkin";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import { DarkModeProvider } from "./context/DarkModeContext";
 
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      // staleTime: 15 * 1000,
+      // staleTime: 60 * 1000,
       staleTime: 0,
     },
   },
 });
 
-export default function App() {
+function App() {
   return (
     <DarkModeProvider>
       <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools />
-        <GlobalStyles /> {/*accepts no children */}
+        <ReactQueryDevtools initialIsOpen={false} />
+
+        <GlobalStyles />
         <BrowserRouter>
           <Routes>
             <Route
@@ -53,11 +53,13 @@ export default function App() {
               <Route path="settings" element={<Settings />} />
               <Route path="account" element={<Account />} />
             </Route>
+
             <Route path="login" element={<Login />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>
-        <Toaster //makes messages look nicer
+
+        <Toaster
           position="top-center"
           gutter={12}
           containerStyle={{ margin: "8px" }}
@@ -81,3 +83,5 @@ export default function App() {
     </DarkModeProvider>
   );
 }
+
+export default App;
