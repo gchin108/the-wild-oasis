@@ -86,6 +86,7 @@ function Toggle({ id }) {
   const { openId, close, open, setPosition } = useContext(MenusContext);
 
   function handleClick(e) {
+    e.stopPropagation(); //stop event bubbling, otherwise option menu will close as soon as it opens
     const rect = e.target.closest("button").getBoundingClientRect();
     setPosition({
       x: window.innerWidth - rect.width - rect.x,
@@ -104,8 +105,7 @@ function Toggle({ id }) {
 
 function List({ id, children }) {
   const { openId, position, close } = useContext(MenusContext);
-  const ref = useClickOutside(close)
-
+  const ref = useClickOutside(close ,false) //capturing phase set to false: listening to bubbling phase
   if (openId !== id) return null;
 
   return createPortal(

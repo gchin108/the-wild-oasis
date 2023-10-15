@@ -5,7 +5,7 @@ import SortBy from "../../ui/SortBy"
 export default function CabinTableOperations() {
   return (
     <TableOperations>
-        <Filter filteredField={"discount"} options={[
+        <Filter filterField="discount" options={[
           {value: "all", label: "All"},
           {value: "with-discount", label: "With discount"},
           {value: "no-discount", label: "No discount"}

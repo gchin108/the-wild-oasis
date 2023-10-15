@@ -35,15 +35,18 @@ const FilterButton = styled.button`
   }
 `;
 
-export default function Filter({ filteredField, options }) {
+export default function Filter({ filterField, options }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   // active filter, the .get method will return the "value"
-  const currentFilter = searchParams.get(filteredField) || options.at(0).value;
+  const currentFilter = searchParams.get(filterField) || options.at(0).value;
 
   // adding params to Url based on the click
   function handleClick(value) {
-    searchParams.set(filteredField, value);
+    searchParams.set(filterField, value);
+
+     if (searchParams.get("page")) searchParams.set("page", 1);//bug fixed: resetting the page to 1 when setting filters
+
     setSearchParams(searchParams);
   }
   return (

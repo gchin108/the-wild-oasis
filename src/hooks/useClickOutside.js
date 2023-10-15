@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-export default function useClickOutside(callback, listenCaputring = true) {
+export default function useClickOutside(callback, listenCapturing = true) {
       const ref = useRef();
   useEffect(() => {
     function handleClick(e) {
@@ -12,12 +12,12 @@ export default function useClickOutside(callback, listenCaputring = true) {
       }
     }
 
-    document.addEventListener("click", handleClick, listenCaputring);
+    document.addEventListener("click", handleClick, listenCapturing);
 
     return () => {
-      document.removeEventListener("click", handleClick, listenCaputring);
+      document.removeEventListener("click", handleClick, listenCapturing);
     };
-  }, [listenCaputring, callback]);
+  }, [listenCapturing, callback]);
 
   return ref
 }
